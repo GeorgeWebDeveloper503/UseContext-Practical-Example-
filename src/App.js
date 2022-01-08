@@ -1,9 +1,14 @@
 import './App.css';
 
+import UsersProfiles from '../src/components/Profiles.js';
+import UserList from '../src/components/userList.js';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 function App() {
   return (
-    <div className="container">
-      <h1>Hello World</h1>
+    <div className="Container">
+      <UserList></UserList>
+      <UsersProfiles></UsersProfiles>
     </div>
   );
 }
