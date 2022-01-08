@@ -4,36 +4,36 @@ import axios from 'axios';
 import UserContext from "./UserContext";
 import UserReducer from "./UserReducer";
 
+
+import { GET_USERS, GET_PROFILE } from "../types";
+
 const UserState = (props) =>{
 
     const initialState = {
-        users:[],
-        selectedUser: null
-    };
-    // const [stateUsers, setStateUsers] = useState(initialState);
+        users: [],
+        selectedUser: null,
+      };
     
     const [state, dispatch] = useReducer(UserReducer, initialState);
 
     const gerUsers =  async() =>{ 
-        const res = await axios.get('https://reqres.in/api/Users');
-            // console.log(res);   
-            console.log(res.data.data);   
-            dispatch({
-                type: 'GET_USERS',
-                payload: res.data.data
-                }
-            );
-    }
+        try {
+            const res = await axios.get("https://reqres.in/api/users");
+            const data = res.data.data;
+            // console.log(data);
+            dispatch({ type: GET_USERS, payload: data });
+          } catch (error) {
+            console.error(error);
+          }
+        }
     
     const getProfile = async(id) =>{ 
-        const res = await axios.get('https://reqres.in/api/Users/'+id);
-        // console.log(res);  
-        console.log(res.data.data);
-        dispatch({
-                type: 'GET_PROFILE',
-                payload: res.data.data
-                }
-            ); 
+        try {
+            const res = await axios.get("https://reqres.in/api/users/" + id);
+            const { data }= res;
+            console.log(data.data);
+            dispatch({ type: GET_PROFILE, payload: data.data });
+          } catch (error) {}
     }
 
     return(

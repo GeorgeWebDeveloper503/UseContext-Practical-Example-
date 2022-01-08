@@ -9,10 +9,16 @@ import UserState from './context/users/UserState';
 
 function App() {
   return (
-    <div className="Container">
+    <div className="Container  p-4">
       <UserState>
-        <UserList></UserList>
-        <UsersProfiles></UsersProfiles>
+        <div className="row">
+          <div className="col-md-7">
+            <UserList />
+          </div>
+          <div className="col-md-5">
+            <UsersProfiles />
+          </div>
+        </div>
       </UserState>
     </div>
   );
